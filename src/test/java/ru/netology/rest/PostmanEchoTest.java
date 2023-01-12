@@ -7,19 +7,17 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 
 
-public class PostmanEchoTest {
+class PostmanEchoTest {
     @Test
     void shouldReturnSendData() {
         given()
                 .baseUri("https://postman-echo.com")
                 .body("Data")
-        .when()
+                .when()
                 .post("/post")
-        .then()
+                .then()
                 .statusCode(200)
                 .body("data", equalTo("Data"))
                 .body(matchesJsonSchemaInClasspath("postmanecho.schema.json"));
     }
 }
-
-
